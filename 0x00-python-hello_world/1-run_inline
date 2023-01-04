@@ -1,2 +1,2 @@
 #!/bin/bash
-Python3.8 -c "$PYCODE"
+Python3 -c "$PYCODE"
