@@ -40,7 +40,6 @@ class Rectangle(Base):
             raise TypeError("width must be an integer")
         if value <= 0:
             raise ValueError("width must be > 0")
-
         self.__width = value
 
     @property
@@ -62,7 +61,6 @@ class Rectangle(Base):
             raise TypeError("height must be an integer")
         if value <= 0:
             raise ValueError("height must be > 0")
-
         self.__height = value
 
     @property
@@ -84,7 +82,6 @@ class Rectangle(Base):
             raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
-
         self.__x = value
 
     @property
@@ -106,7 +103,6 @@ class Rectangle(Base):
             raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
-
         self.__y = value
 
     def area(self):
@@ -119,28 +115,24 @@ class Rectangle(Base):
         """
             prints to stdout the Rectangle instance with '#'
         """
-        rectangle = ""
-        print_symbol = "#"
-
-#        for i in range(self.__height - 1):
-#            rectangle += print_symbol * self.__width + "\n"
-#        rectangle += print_symbol * self.__width
-
-#        print("{}".format(rectangle))
-
-        print("\n" * self.y, end="")
-
-        for i in range(self.height):
-            rectangle += (" " * self.x) + (print_symbol*self.width) + "\n"
-        print(rectangle, end="")
+        disp = ""
+        
+        disp += "\n" * self.__y
+        for columns in range(self.__height):
+            disp += (" " * self.__x)
+            for rows in range(self.__width):
+                disp += ("#")
+            if columns < self.__height - 1:
+                disp += ("\n")
+        print(disp)
 
     def __str__(self):
         """
             returns a string formart of the rectangle
         """
-        return "[{}] ({}) {}/{} - {}/{}".format(type(self).__name__, self.id,
-                                                self.__x, self.__y,
-                                                self.__width, self.__height)
+        return "[{}] ({}) {}/{} - {}/{}".format(self.__class__.__name__, self.id,
+                                                self.__x, self.__y, self.__width,
+                                                self.__height)
 
     def update(self, *args, **kwargs):
         """

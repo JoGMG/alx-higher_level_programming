@@ -37,7 +37,7 @@ class Base:
             list_dictionaries (list): A list of dictionaries.
         """
         if list_dictionaries is None or list_dictionaries == []:
-            return "[]"
+            return []
         return json.dumps(list_dictionaries)
 
     @classmethod
@@ -48,12 +48,12 @@ class Base:
             list_objs (list): A list of inherited Base instances.
         """
         filename = cls.__name__ + ".json"
-        with open(filename, "w") as jsonfile:
+        with open(filename, "w") as f:
             if list_objs is None:
-                jsonfile.write("[]")
+                f.write("[]")
             else:
                 list_dicts = [o.to_dictionary() for o in list_objs]
-                jsonfile.write(Base.to_json_string(list_dicts))
+                f.write(Base.to_json_string(list_dicts))
 
     @staticmethod
     def from_json_string(json_string):
@@ -65,7 +65,7 @@ class Base:
             If json_string is None or empty - an empty list.
             Otherwise - the Python list represented by json_string.
         """
-        if json_string is None or json_string == "[]":
+        if json_string is None or json_string == []:
             return []
         return json.loads(json_string)
 
@@ -76,7 +76,7 @@ class Base:
         Args:
             **dictionary (dict): Key/value pairs of attributes to initialize.
         """
-        if dictionary and dictionary != {}:
+        if dictionary != {}:
             if cls.__name__ == "Rectangle":
                 new = cls(1, 1)
             else:
@@ -94,13 +94,13 @@ class Base:
             If the file does not exist - an empty list.
             Otherwise - a list of instantiated classes.
         """
-        filename = str(cls.__name__) + ".json"
-        try:
-            with open(filename, "r") as jsonfile:
-                list_dicts = Base.from_json_string(jsonfile.read())
+        filename = cls.__name__ + ".json"
+        with open(filename, "r") as f:
+            try:
+                list_dicts = Base.from_json_string(f.read())
                 return [cls.create(**d) for d in list_dicts]
-        except IOError:
-            return []
+            except IOError:
+                return []
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
@@ -110,15 +110,15 @@ class Base:
             list_objs (list): A list of inherited Base instances.
         """
         filename = cls.__name__ + ".csv"
-        with open(filename, "w", newline="") as csvfile:
+        with open(filename, "w", newline="") as f:
             if list_objs is None or list_objs == []:
-                csvfile.write("[]")
+                f.write("[]")
             else:
                 if cls.__name__ == "Rectangle":
                     fieldnames = ["id", "width", "height", "x", "y"]
                 else:
                     fieldnames = ["id", "size", "x", "y"]
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
                 for obj in list_objs:
                     writer.writerow(obj.to_dictionary())
 
@@ -133,18 +133,17 @@ class Base:
             Otherwise - a list of instantiated classes.
         """
         filename = cls.__name__ + ".csv"
-        try:
-            with open(filename, "r", newline="") as csvfile:
+        with open(filename, "r", newline="") as f:
+            try:
                 if cls.__name__ == "Rectangle":
                     fieldnames = ["id", "width", "height", "x", "y"]
                 else:
                     fieldnames = ["id", "size", "x", "y"]
-                list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
-                list_dicts = [dict([k, int(v)] for k, v in d.items())
-                              for d in list_dicts]
+                list_dicts = csv.DictReader(f, fieldnames=fieldnames)
+                list_dicts = [dict([k, int(v)] for k, v in d.items()) for d in list_dicts]
                 return [cls.create(**d) for d in list_dicts]
-        except IOError:
-            return []
+            except IOError:
+                return []
 
     @staticmethod
     def draw(list_rectangles, list_squares):
