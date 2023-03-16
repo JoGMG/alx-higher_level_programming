@@ -31,7 +31,6 @@ class Square(Rectangle):
             raise TypeError("width must be an integer")
         if value <= 0:
             raise ValueError("width must be > 0")
-
         self.width = value
         self.height = value
 
@@ -60,7 +59,7 @@ class Square(Rectangle):
         """
             Overloading str function
         """
-        return "[{}] ({}) {}/{} - {}".format(type(self).__name__,
+        return "[{}] ({}) {}/{} - {}".format(self.__class__.__name__,
                                              self.id, self.x, self.y,
                                              self.width)
 
