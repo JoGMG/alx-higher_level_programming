@@ -1,6 +1,11 @@
--- Lists all shows and genres linked to the show from the
--- database hbtn_0d_tvshows.
--- Records are ordered by ascending show title and genre name.
+-- Import the database dump from hbtn_0d_tvshows to your MySQL server: https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql
+-- Write a script that lists all shows, and all genres linked to that show, from the database hbtn_0d_tvshows.
+  -- If a show doesn’t have a genre, display NULL in the genre column
+  -- Each record should display: tv_shows.title - tv_genres.name
+  -- Results must be sorted in ascending order by the show title and genre name
+  -- You can use only one SELECT statement
+  -- The database name will be passed as an argument of the mysql command
+  
 SELECT t.`title`, g.`name`
   FROM `tv_shows` AS t
        LEFT JOIN `tv_show_genres` AS s
