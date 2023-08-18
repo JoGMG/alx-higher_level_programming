@@ -13,6 +13,6 @@ if (args.length <= 3) {
 } else {
   const arg = args.map(Number)
     .slice(2)
-    .sort((a, b) => a - b);
+    .sort();
   console.log(arg[arg.length - 2]);
 }
