@@ -7,5 +7,6 @@
 // Print both the initial list and the new list
 
 const list = require('./100-data.js').list;
+const newList = list.map((values, index) => values * index);
 console.log(list);
-console.log(list.map((item, index) => item * index));
+console.log(newList);
