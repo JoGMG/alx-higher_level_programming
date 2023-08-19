@@ -9,10 +9,22 @@
 
 const dict = require('./101-data.js').dict;
 const newDict = {};
-for (const key in dict) {
-  if (newDict[dict[key]] === undefined) {
-    newDict[dict[key]] = [];
+for (const [key, val] of Object.entries(dict)) {
+  if (val in newDict) {
+    newDict[val].push(key);
+  } else {
+    newDict[val] = [key];
   }
-  newDict[dict[key]].push(key);
 }
 console.log(newDict);
+/**
+ * values also == dict[key]
+for (const key in dict) {
+  if (dict[key] in newDict) {
+    newDict[dict[key]].push(key);
+  } else {
+    newDict[dict[key]] = [key];
+  }
+}
+console.log(newDict);
+**/
