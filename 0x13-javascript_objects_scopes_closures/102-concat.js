@@ -6,6 +6,6 @@
 // The third argument is the file path of the destination
 
 const fs = require('fs');
-const a = fs.readFileSync(process.argv[2], 'utf8');
-const b = fs.readFileSync(process.argv[3], 'utf8');
-fs.writeFileSync(process.argv[4], a + b);
+const a = fs.readFileSync(process.argv[2], 'utf-8');
+const b = fs.readFileSync(process.argv[3], 'utf-8');
+fs.writeFileSync(process.argv[4], a + '\n' + b);
