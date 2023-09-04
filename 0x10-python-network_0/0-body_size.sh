@@ -4,4 +4,4 @@
 # - The size must be displayed in bytes
 # - You have to use `curl`
 
-curl -sI "$1" | wc -c
+curl -s "$1" | wc -c
