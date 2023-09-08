@@ -5,12 +5,12 @@
     - Using the `requests` package.
     - The email must be sent in the variable `email`
 """
-from sys import argv
+import sys
 import requests
 
 if __name__ == "__main__":
-    url = argv[1]
-    value = {"email": argv[2]}
+    url = sys.argv[1]
+    value = {"email": sys.argv[2]}
     r = requests.post(url, data=value)
     print(r.text)
 
