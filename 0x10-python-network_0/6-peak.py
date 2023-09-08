@@ -23,4 +23,3 @@ def find_peak(list_of_integers):
         return find_peak(d_list[mid_index:])
     if mid_index > 0 and d_list[mid_index] < d_list[mid_index - 1]:
         return find_peak(d_list[:mid_index])
-    
