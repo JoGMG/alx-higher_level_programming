@@ -7,7 +7,6 @@
 from sys import argv
 import urllib.request
 
-
 if __name__ == "__main__":
     url = argv[1]
     request = urllib.request.Request(url)
