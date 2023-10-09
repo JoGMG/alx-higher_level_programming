@@ -19,7 +19,7 @@ $(document).ready(function () {
       type: 'POST',
       url: 'https://hellosalut.stefanbohacek.dev/?lang=' + langCode,
       success: function (response) {
-        $('DIV#hello').html(response.hello);
+        $('DIV#hello').text(response.hello);
       },
       error: function (error) {
         console.log(error);

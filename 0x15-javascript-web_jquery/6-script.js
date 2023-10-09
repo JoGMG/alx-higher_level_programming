@@ -4,5 +4,5 @@
 // - You must use the JQuery API
 
 $('DIV#update_header').click(function () {
-  $('header').html('New Header!!!');
+  $('header').text('New Header!!!');
 });

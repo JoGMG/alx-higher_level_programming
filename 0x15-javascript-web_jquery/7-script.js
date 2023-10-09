@@ -5,5 +5,5 @@
 // - You must use the JQuery API
 
 $.getJSON('https://swapi-api.alx-tools.com/api/people/5/?format=json', function (data) {
-  $('DIV#character').html(data.name);
+  $('DIV#character').text(data.name);
 });

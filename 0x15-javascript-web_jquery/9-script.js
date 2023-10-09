@@ -7,6 +7,6 @@
 
 $.get('https://hellosalut.stefanbohacek.dev/?lang=fr', function (data, status) {
   if (status === 'success') {
-    $('DIV#hello').html(data.hello);
+    $('DIV#hello').text(data.hello);
   }
 });
